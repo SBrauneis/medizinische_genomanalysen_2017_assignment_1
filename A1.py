@@ -139,16 +139,16 @@ class Assignment1:
         return(self.ExonCount)  #return the exon count from the header
 
     def print_summary(self):
-        print ("Results: (total of 8, this may take a while)")
-        print("Sam Header:", self.get_sam_header())
-        print("Proper Pairs:", self.get_properly_paired_reads_of_gene())
-        print("Indels:", self.get_gene_reads_with_indels())
-        print("Total average coverage:", self.calculate_total_average_coverage())
-        print("Gene average coverage:", self.calculate_gene_average_coverage())
-        print("Number of mapped reads:", self.get_number_mapped_reads())
-        print("Gene symbol:", self.get_gene_symbol())
-        print("Gene region:", self.get_region_of_gene())
-        print("Number of exons:", self.get_number_of_exons())
+        print ("Results: (total of 9, this may take a while)")
+        print("1. Sam Header:", self.get_sam_header())
+        print("2. Proper Pairs:", self.get_properly_paired_reads_of_gene())
+        print("3. Indels:", self.get_gene_reads_with_indels())
+        print("4. Total average coverage:", self.calculate_total_average_coverage())
+        print("5. Gene average coverage:", self.calculate_gene_average_coverage())
+        print("6. Number of mapped reads:", self.get_number_mapped_reads())
+        print("7. Gene symbol:", self.get_gene_symbol())
+        print("8. Gene region:", self.get_region_of_gene())
+        print("9. Number of exons:", self.get_number_of_exons())
 
 if __name__ == '__main__':
     print ("Assignment 1", __author__)
