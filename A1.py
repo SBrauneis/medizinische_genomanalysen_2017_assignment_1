@@ -72,9 +72,9 @@ class Assignment1:
 
     def get_sam_header(self): #print header(HD) and the info stored under it (version, sorting order, grouping)
         samfile = pysam.AlignmentFile(filename, "rb") #open samfile according to template: pysam.AlignmentFile("ex1.bam", "rb")
-        for header, info in samfile.header['HD'].info():
+        for header, info in samfile.header['HD'].items():
             if header == 'VN':
-                a=("Version: {}".format(item))
+                a=("Version: {}".format(info))
                 return a
             elif header == 'SO':
                 b=("Sorting order of alignments: {}".format(info))
@@ -105,7 +105,7 @@ class Assignment1:
                 for type, nr in cigar:
                     if type == 1 or type == 2:
                         indels = indels + 1    #count number of indels
-                        print(read)            #print the read with an indel
+                        #print(read)            #print the read with an indel
         samfile.close()
         return indels
 
