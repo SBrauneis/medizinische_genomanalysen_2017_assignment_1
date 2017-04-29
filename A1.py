@@ -127,7 +127,7 @@ class Assignment1:
         nr = 0
         cov = 0
         avCov=0
-        for line in coverage:
+        for line in genecoverage:
             st=int(line[1])
             end=int(line[2])
             if self.Start <= st:
