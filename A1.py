@@ -1,7 +1,7 @@
 import mysql.connector
 import sys
 import pysam
-#import pybedtools
+import pybedtools
 
 __author__ = 'Shelley Brauneis'
 filename = "HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20120522.bam"
@@ -122,8 +122,8 @@ class Assignment1:
         return av_cov
 
     def calculate_gene_average_coverage(self):
-        a = pybedtools.BedTool(self.header)   #open in pybedtools again
-        genecoverage=a.coverage(bg=True)    #calculate gene specific coverage
+        a = pybedtools.BedTool(filename)   #open in pybedtools again
+        genecoverage=a.genome_coverage(bg=True)    #calculate gene specific coverage
         nr = 0
         cov = 0
         avCov=0
