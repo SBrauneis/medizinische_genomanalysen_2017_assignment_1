@@ -1,7 +1,7 @@
 import mysql.connector
 import sys
 import pysam
-import pybedtools
+#import pybedtools
 
 __author__ = 'Shelley Brauneis'
 filename = "HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20120522.bam"
@@ -9,7 +9,7 @@ filename = "HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20120522.bam"
 class Assignment1:
     def __init__(self):
         ## gene of interest is HBB, I assigned it as my gene
-        self.gene = "HBB"
+        self.gene = "WT1"
         self.header = []
         self.name = ""
         self.chrom = ""
@@ -111,13 +111,33 @@ class Assignment1:
 
     def calculate_total_average_coverage(self):
         a = pybedtools.BedTool(filename)        #file was opened using pybedtools
-        coverage = a.genome_coverage(bg=True)   #coverage calculation using genome_coverage
-        return coverage
+        coverage = a.genome_coverage(bg=True)
+        nr=0
+        cov=0
+        for line in coverage:
+            ind_cov=float(line[3])
+            cov += ind_cov
+            nr += 1
+            av_cov = cov/nr
+        return av_cov
 
     def calculate_gene_average_coverage(self):
         a = pybedtools.BedTool(self.header)   #open in pybedtools again
         genecoverage=a.coverage(bg=True)    #calculate gene specific coverage
-        return genecoverage
+        nr = 0
+        cov = 0
+        avCov=0
+        for line in coverage:
+            st=int(line[1])
+            end=int(line[2])
+            if self.Start <= st:
+                if self.End >= end:
+                    ind_cov = float(line[3])
+                    cov += ind_cov
+                    nr += 1
+        av_cov = cov / nr
+        return av_cov
+
 
     def get_number_mapped_reads(self):
         samfile = pysam.AlignmentFile(filename, "rb")
@@ -143,8 +163,8 @@ class Assignment1:
         print("1. Sam Header:", self.get_sam_header())
         print("2. Proper Pairs:", self.get_properly_paired_reads_of_gene())
         print("3. Indels:", self.get_gene_reads_with_indels())
-        print("4. Total average coverage:", self.calculate_total_average_coverage())
-        print("5. Gene average coverage:", self.calculate_gene_average_coverage())
+        #print("4. Total average coverage:", self.calculate_total_average_coverage())
+        #print("5. Gene average coverage:", self.calculate_gene_average_coverage())
         print("6. Number of mapped reads:", self.get_number_mapped_reads())
         print("7. Gene symbol:", self.get_gene_symbol())
         print("8. Gene region:", self.get_region_of_gene())
@@ -154,5 +174,5 @@ if __name__ == '__main__':
     print ("Assignment 1", __author__)
     assignment1 = Assignment1()
     print("Fetching gene coordinates:")
-    assignment1.fetch_gene_coordinates("hg38", "hbb.txt")
+    assignment1.fetch_gene_coordinates("hg19", "claudia.txt")
     assignment1.print_summary()
