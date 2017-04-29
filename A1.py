@@ -9,7 +9,7 @@ filename = "HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20120522.bam"
 class Assignment1:
     def __init__(self):
         ## gene of interest is HBB, I assigned it as my gene
-        self.gene = "WT1"
+        self.gene = "HBB"
         self.header = []
         self.name = ""
         self.chrom = ""
@@ -174,5 +174,5 @@ if __name__ == '__main__':
     print ("Assignment 1", __author__)
     assignment1 = Assignment1()
     print("Fetching gene coordinates:")
-    assignment1.fetch_gene_coordinates("hg19", "claudia.txt")
+    assignment1.fetch_gene_coordinates("hg38", "hbb.txt")
     assignment1.print_summary()
